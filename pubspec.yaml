@@ -23,6 +23,8 @@ environment:
 dependencies:
   safeprint: ^0.0.2
   get: ^4.0.0-nullsafety.2
+  flutter_bloc: ^7.0.0-nullsafety.5
+  provider: ^5.0.0
   http: ^0.13.0
   hive: ^2.0.0
   flutter:
@@ -34,6 +36,8 @@ dependencies:
   cupertino_icons: ^1.0.2
 
 dev_dependencies:
+  mockito: ^5.0.1
+  build_runner: ^1.11.0
   flutter_test:
     sdk: flutter
 

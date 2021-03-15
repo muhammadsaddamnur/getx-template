@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/foundation.dart';
@@ -11,7 +12,7 @@ class ServiceLocalStorage {
 
   ///init method for hive
   ///
-  void init() async {
+  static init() async {
     if (!kIsWeb) {
       var path = Directory.current.path;
       Hive.init(path);
@@ -20,16 +21,24 @@ class ServiceLocalStorage {
 
   ///get data from hive, return data is dynamic
   ///
-  get() async {
+  get({bool isJson = false}) async {
     var box = await Hive.openBox(_hiveBox);
-    return box.get(key);
+    if (isJson) {
+      return json.decode(box.get(key));
+    } else {
+      return box.get(key);
+    }
   }
 
   ///you can put any data, data type according to the input
   ///
-  put({@required value}) async {
+  put({@required value, bool isJson = false}) async {
     var box = await Hive.openBox(_hiveBox);
-    box.put(key, value);
+    if (isJson) {
+      box.put(key, json.encode(value));
+    } else {
+      box.put(key, value);
+    }
   }
 
   ///delete method
